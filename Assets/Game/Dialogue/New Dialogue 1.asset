@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: New Dialogue 1
   m_EditorClassIdentifier: 
   nodes:
-    uniqueID: 
-    text: 
+  - uniqueID: 1
+    text: test ttttttt
+    children: []
+  - uniqueID: 6
+    text: d
+    children: []
+  - uniqueID: 3
+    text: teesaeasr
     children: []
