@@ -74,7 +74,7 @@ namespace RPG.Dialogue.Editor
          if (draggingStarted)
          {
             draggingNode = GetNodeAtPoint(Event.current.mousePosition);
-            if(draggingNode != null)
+            if (draggingNode != null)
             {
                draggingOffset = draggingNode.rect.position - Event.current.mousePosition;
             }
@@ -94,9 +94,9 @@ namespace RPG.Dialogue.Editor
       private DialogueNode GetNodeAtPoint(Vector2 point)
       {
          DialogueNode foundNode = null;
-         foreach(var node in selectedDialogue.GetAllNodes())
+         foreach (var node in selectedDialogue.GetAllNodes())
          {
-            if(node.rect.Contains(point)) foundNode = node;
+            if (node.rect.Contains(point)) foundNode = node;
          }
          return foundNode;
       }
@@ -117,6 +117,10 @@ namespace RPG.Dialogue.Editor
             node.uniqueID = newNodeId;
          }
 
+         foreach (var childNode in selectedDialogue.GetAllChildren(node))
+         {
+            EditorGUILayout.LabelField(childNode.text);
+         }
          GUILayout.EndArea();
       }
    }
