@@ -16,9 +16,27 @@ MonoBehaviour:
   - uniqueID: 1
     text: test ttttttt
     children: []
+    position:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 200
+      height: 100
   - uniqueID: 6
     text: d
     children: []
+    position:
+      serializedVersion: 2
+      x: 0
+      y: 100
+      width: 200
+      height: 100
   - uniqueID: 3
     text: teesaeasr
     children: []
+    position:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0

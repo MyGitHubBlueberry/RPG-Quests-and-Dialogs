@@ -8,7 +8,9 @@ namespace RPG.Dialogue.Editor
    public class DialogueEditor : EditorWindow
    {
       Dialogue selectedDialogue;
+      DialogueNode draggingNode;
       GUIStyle nodeStyle;
+      Vector2 draggingOffset;
 
       [OnOpenAsset(1)]
       public static bool OnOpenAsset(int instanceID, int line)
@@ -40,7 +42,7 @@ namespace RPG.Dialogue.Editor
       private void OnSelectionChanged()
       {
          Dialogue newDialogue = Selection.activeObject as Dialogue;
-         if(newDialogue != null)
+         if (newDialogue != null)
          {
             selectedDialogue = newDialogue;
             Repaint();
@@ -55,6 +57,7 @@ namespace RPG.Dialogue.Editor
          }
          else
          {
+            ProcessEvents();
             foreach (var node in selectedDialogue.GetAllNodes())
             {
                OnGUINode(node);
@@ -62,9 +65,45 @@ namespace RPG.Dialogue.Editor
          }
       }
 
+      private void ProcessEvents()
+      {
+         bool draggingStarted = Event.current.type == EventType.MouseDown && draggingNode == null;
+         bool draggingStopped = Event.current.type == EventType.MouseUp && draggingNode != null;
+         bool draggingInProcess = Event.current.type == EventType.MouseDrag && draggingNode != null;
+
+         if (draggingStarted)
+         {
+            draggingNode = GetNodeAtPoint(Event.current.mousePosition);
+            if(draggingNode != null)
+            {
+               draggingOffset = draggingNode.rect.position - Event.current.mousePosition;
+            }
+         }
+         else if (draggingInProcess)
+         {
+            Undo.RecordObject(selectedDialogue, "Update Dialogue position");
+            draggingNode.rect.position = Event.current.mousePosition + draggingOffset;
+            GUI.changed = true;
+         }
+         else if (draggingStopped)
+         {
+            draggingNode = null;
+         }
+      }
+
+      private DialogueNode GetNodeAtPoint(Vector2 point)
+      {
+         DialogueNode foundNode = null;
+         foreach(var node in selectedDialogue.GetAllNodes())
+         {
+            if(node.rect.Contains(point)) foundNode = node;
+         }
+         return foundNode;
+      }
+
       private void OnGUINode(DialogueNode node)
       {
-         GUILayout.BeginArea(node.position, nodeStyle);
+         GUILayout.BeginArea(node.rect, nodeStyle);
          EditorGUI.BeginChangeCheck();
 
          EditorGUILayout.LabelField("Node: ");
