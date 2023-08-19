@@ -15,10 +15,30 @@ MonoBehaviour:
   nodes:
   - uniqueID: 1
     text: test
-    children: []
+    children:
+    - 2
+    - 4
+    rect:
+      serializedVersion: 2
+      x: 349
+      y: 34
+      width: 200
+      height: 200
   - uniqueID: 2
     text: bla bls
     children: []
+    rect:
+      serializedVersion: 2
+      x: 22
+      y: 112
+      width: 200
+      height: 100
   - uniqueID: 4
     text: whatevwer
     children: []
+    rect:
+      serializedVersion: 2
+      x: 22
+      y: 214
+      width: 200
+      height: 100
