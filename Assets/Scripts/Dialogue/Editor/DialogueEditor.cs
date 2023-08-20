@@ -14,6 +14,7 @@ namespace RPG.Dialogue.Editor
       [NonSerialized] DialogueNode creatingNode = null;
       [NonSerialized] DialogueNode deletingNode = null;
       [NonSerialized] DialogueNode linkingParentNode = null;
+      Vector2 scrollPosition;
 
       [OnOpenAsset(1)]
       public static bool OnOpenAsset(int instanceID, int line)
@@ -62,6 +63,10 @@ namespace RPG.Dialogue.Editor
          {
             ProcessEvents();
 
+            scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
+
+            GUILayoutUtility.GetRect(4000, 4000);
+
             foreach (var node in selectedDialogue.GetAllNodes())
             {
                DrawConnections(node);
@@ -70,6 +75,9 @@ namespace RPG.Dialogue.Editor
             {
                DrawNode(node);
             }
+
+            EditorGUILayout.EndScrollView();
+
             if (creatingNode != null)
             {
                Undo.RecordObject(selectedDialogue, "Added Dialogue Node");
@@ -94,7 +102,7 @@ namespace RPG.Dialogue.Editor
 
          if (draggingStarted)
          {
-            draggingNode = GetNodeAtPoint(Event.current.mousePosition);
+            draggingNode = GetNodeAtPoint(Event.current.mousePosition + scrollPosition);
             if (draggingNode != null)
             {
                draggingOffset = draggingNode.rect.position - Event.current.mousePosition;
@@ -143,7 +151,7 @@ namespace RPG.Dialogue.Editor
          }
 
          DrawLinkButtons(node);
-         
+
          if (GUILayout.Button("+"))
          {
             creatingNode = node;
