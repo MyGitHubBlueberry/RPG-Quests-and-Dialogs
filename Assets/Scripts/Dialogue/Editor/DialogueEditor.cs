@@ -8,9 +8,10 @@ namespace RPG.Dialogue.Editor
    public class DialogueEditor : EditorWindow
    {
       Dialogue selectedDialogue;
-      DialogueNode draggingNode;
-      GUIStyle nodeStyle;
-      Vector2 draggingOffset;
+      [NonSerialized] DialogueNode draggingNode;
+      [NonSerialized] GUIStyle nodeStyle;
+      [NonSerialized] Vector2 draggingOffset;
+      [NonSerialized] DialogueNode creatingNode = null;
 
       [OnOpenAsset(1)]
       public static bool OnOpenAsset(int instanceID, int line)
@@ -67,6 +68,13 @@ namespace RPG.Dialogue.Editor
             {
                DrawNode(node);
             }
+            if (creatingNode != null)
+            {
+               Undo.RecordObject(selectedDialogue, "Added Dialogue Node");
+               selectedDialogue.CreateNode(creatingNode);
+               creatingNode = null;
+            }
+            selectedDialogue.CreateDefaultNode();
          }
       }
 
@@ -111,15 +119,17 @@ namespace RPG.Dialogue.Editor
          GUILayout.BeginArea(node.rect, nodeStyle);
          EditorGUI.BeginChangeCheck();
 
-         EditorGUILayout.LabelField("Node: ");
          string newNodeText = EditorGUILayout.TextField(node.text);
-         string newNodeId = EditorGUILayout.TextField(node.uniqueID);
 
          if (EditorGUI.EndChangeCheck())
          {
             Undo.RecordObject(selectedDialogue, "Update Dialogue Text");
             node.text = newNodeText;
-            node.uniqueID = newNodeId;
+         }
+
+         if (GUILayout.Button("+"))
+         {
+            creatingNode = node;
          }
 
          GUILayout.EndArea();
@@ -127,7 +137,7 @@ namespace RPG.Dialogue.Editor
 
       private void DrawConnections(DialogueNode node)
       {
-         Vector3 startPosition = new Vector2(node.rect.xMax,  node.rect.center.y);
+         Vector3 startPosition = new Vector2(node.rect.xMax, node.rect.center.y);
          foreach (DialogueNode childNode in selectedDialogue.GetAllChildren(node))
          {
             Vector3 endPosition = new Vector2(childNode.rect.xMin, childNode.rect.center.y);

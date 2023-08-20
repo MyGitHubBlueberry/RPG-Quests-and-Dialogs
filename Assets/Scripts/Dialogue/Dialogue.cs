@@ -15,13 +15,20 @@ namespace RPG.Dialogue
 #if UNITY_EDITOR
       private void Awake()
       {
-         if (nodes.Count == 0)
-         {
-            nodes.Add(new DialogueNode());
-         }
+         CreateDefaultNode();
          OnValidate();
       }
 #endif
+
+      public void CreateDefaultNode()
+      {
+         if (nodes.Count == 0)
+         {
+            DialogueNode rootNode = new DialogueNode();
+            rootNode.uniqueID = System.Guid.NewGuid().ToString();
+            nodes.Add(rootNode);
+         }
+      }
 
       private void OnValidate()
       {
@@ -37,11 +44,6 @@ namespace RPG.Dialogue
          return nodes;
       }
 
-      public DialogueNode GetRootNode()
-      {
-         return nodes[0];
-      }
-
       public IEnumerable<DialogueNode> GetAllChildren(DialogueNode parentNode)
       {
          foreach (string childID in parentNode.children)
@@ -51,6 +53,15 @@ namespace RPG.Dialogue
                yield return nodeLookup[childID];
             }
          }
+      }
+
+      public void CreateNode(DialogueNode parentNode)
+      {
+         DialogueNode node = new DialogueNode();
+         node.uniqueID = Guid.NewGuid().ToString();
+         parentNode.children.Add(node.uniqueID);
+         nodes.Add(node);
+         OnValidate(); 
       }
    }
 }
