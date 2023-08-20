@@ -12,6 +12,7 @@ namespace RPG.Dialogue.Editor
       [NonSerialized] GUIStyle nodeStyle;
       [NonSerialized] Vector2 draggingOffset;
       [NonSerialized] DialogueNode creatingNode = null;
+      [NonSerialized] DialogueNode deletingNode = null;
 
       [OnOpenAsset(1)]
       public static bool OnOpenAsset(int instanceID, int line)
@@ -74,6 +75,12 @@ namespace RPG.Dialogue.Editor
                selectedDialogue.CreateNode(creatingNode);
                creatingNode = null;
             }
+            if(deletingNode != null)
+            {
+               Undo.RecordObject(selectedDialogue, "Delete Dialogue Node");
+               selectedDialogue.DeleteNode(deletingNode);
+               deletingNode = null;
+            }
             selectedDialogue.CreateDefaultNode();
          }
       }
@@ -127,10 +134,19 @@ namespace RPG.Dialogue.Editor
             node.text = newNodeText;
          }
 
+         GUILayout.BeginHorizontal();
+
+         if (GUILayout.Button("-"))
+         {
+            deletingNode = node;
+         }
+
          if (GUILayout.Button("+"))
          {
             creatingNode = node;
          }
+
+         GUILayout.EndHorizontal();
 
          GUILayout.EndArea();
       }
