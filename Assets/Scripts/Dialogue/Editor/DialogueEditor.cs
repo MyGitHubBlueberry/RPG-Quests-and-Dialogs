@@ -18,6 +18,9 @@ namespace RPG.Dialogue.Editor
       [NonSerialized] bool draggingCanvas;
       [NonSerialized] Vector2 draggingCanvasOffset;
 
+      const float CANVAS_SIZE = 4000;
+      const float BACKGROUND_SIZE = 50;
+
       [OnOpenAsset(1)]
       public static bool OnOpenAsset(int instanceID, int line)
       {
@@ -67,7 +70,12 @@ namespace RPG.Dialogue.Editor
 
             scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
 
-            GUILayoutUtility.GetRect(4000, 4000);
+            Rect canvas = GUILayoutUtility.GetRect(CANVAS_SIZE, CANVAS_SIZE);
+            Texture2D backgroundTex = Resources.Load("background") as Texture2D;
+            int textureRepeatNumber = (int)(CANVAS_SIZE / BACKGROUND_SIZE);
+            Rect texCoords = new Rect(0, 0, textureRepeatNumber, textureRepeatNumber);
+
+            GUI.DrawTextureWithTexCoords(canvas, backgroundTex, texCoords);    
 
             foreach (var node in selectedDialogue.GetAllNodes())
             {
