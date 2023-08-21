@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace RPG.Dialogue
@@ -24,9 +25,7 @@ namespace RPG.Dialogue
       {
          if (nodes.Count == 0)
          {
-            DialogueNode rootNode = new DialogueNode();
-            rootNode.uniqueID = System.Guid.NewGuid().ToString();
-            nodes.Add(rootNode);
+            CreateNode(null);
          }
       }
 
@@ -35,7 +34,7 @@ namespace RPG.Dialogue
          nodeLookup.Clear();
          foreach (DialogueNode node in GetAllNodes())
          {
-            nodeLookup[node.uniqueID] = node;
+            nodeLookup[node.name] = node;
          }
       }
 
@@ -57,25 +56,32 @@ namespace RPG.Dialogue
 
       public void CreateNode(DialogueNode parentNode)
       {
-         DialogueNode node = new DialogueNode();
-         node.uniqueID = Guid.NewGuid().ToString();
-         parentNode.children.Add(node.uniqueID);
+         DialogueNode node = CreateInstance<DialogueNode>();
+         node.name = Guid.NewGuid().ToString();
+
+         Undo.RegisterCreatedObjectUndo(node, "Created Dialogue Node");
+
+         if (parentNode != null)
+         {
+            parentNode.children.Add(node.name);
+         }
          nodes.Add(node);
-         OnValidate(); 
+         OnValidate();
       }
-      
+
       public void DeleteNode(DialogueNode nodeToDelete)
       {
          nodes.Remove(nodeToDelete);
          OnValidate();
          CleanDanglingChildren(nodeToDelete);
+         Undo.DestroyObjectImmediate(nodeToDelete);
       }
 
       private void CleanDanglingChildren(DialogueNode nodeToDelete)
       {
          foreach (DialogueNode node in GetAllNodes())
          {
-            node.children.Remove(nodeToDelete.uniqueID);
+            node.children.Remove(nodeToDelete.name);
          }
       }
    }

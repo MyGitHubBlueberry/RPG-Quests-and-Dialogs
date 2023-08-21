@@ -75,7 +75,7 @@ namespace RPG.Dialogue.Editor
             int textureRepeatNumber = (int)(CANVAS_SIZE / BACKGROUND_SIZE);
             Rect texCoords = new Rect(0, 0, textureRepeatNumber, textureRepeatNumber);
 
-            GUI.DrawTextureWithTexCoords(canvas, backgroundTex, texCoords);    
+            GUI.DrawTextureWithTexCoords(canvas, backgroundTex, texCoords);
 
             foreach (var node in selectedDialogue.GetAllNodes())
             {
@@ -118,11 +118,13 @@ namespace RPG.Dialogue.Editor
             if (draggingNode != null)
             {
                draggingOffset = draggingNode.rect.position - Event.current.mousePosition;
+               Selection.activeObject = draggingNode;
             }
             else
             {
                draggingCanvas = true;
                draggingCanvasOffset = Event.current.mousePosition + scrollPosition;
+               Selection.activeObject = selectedDialogue;
             }
          }
          else if (draggingNodeIsInProcess)
@@ -142,7 +144,7 @@ namespace RPG.Dialogue.Editor
          {
             draggingNode = null;
          }
-         else if(draggingCanvasIsStopped)
+         else if (draggingCanvasIsStopped)
          {
             draggingCanvas = false;
          }
@@ -206,21 +208,21 @@ namespace RPG.Dialogue.Editor
                linkingParentNode = null;
             }
          }
-         else if (linkingParentNode.children.Contains(node.uniqueID))
+         else if (linkingParentNode.children.Contains(node.name))
          {
             if (GUILayout.Button("unlink"))
             {
                Undo.RecordObject(selectedDialogue, "Remove Dialogue Node link");
-               linkingParentNode.children.Remove(node.uniqueID);
+               linkingParentNode.children.Remove(node.name);
                linkingParentNode = null;
             }
          }
-         else if (node.children.Contains(linkingParentNode.uniqueID))
+         else if (node.children.Contains(linkingParentNode.name))
          {
             if (GUILayout.Button("unlink"))
             {
                Undo.RecordObject(selectedDialogue, "Remove Dialogue Node link");
-               node.children.Remove(linkingParentNode.uniqueID);
+               node.children.Remove(linkingParentNode.name);
                linkingParentNode = null;
             }
          }
@@ -229,7 +231,7 @@ namespace RPG.Dialogue.Editor
             if (GUILayout.Button("child"))
             {
                Undo.RecordObject(selectedDialogue, "Add Dialogue Node link");
-               linkingParentNode.children.Add(node.uniqueID);
+               linkingParentNode.children.Add(node.name);
                linkingParentNode = null;
             }
          }
