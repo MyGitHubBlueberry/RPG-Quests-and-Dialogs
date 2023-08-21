@@ -15,6 +15,8 @@ namespace RPG.Dialogue.Editor
       [NonSerialized] DialogueNode deletingNode = null;
       [NonSerialized] DialogueNode linkingParentNode = null;
       Vector2 scrollPosition;
+      [NonSerialized] bool draggingCanvas;
+      [NonSerialized] Vector2 draggingCanvasOffset;
 
       [OnOpenAsset(1)]
       public static bool OnOpenAsset(int instanceID, int line)
@@ -97,8 +99,10 @@ namespace RPG.Dialogue.Editor
       private void ProcessEvents()
       {
          bool draggingStarted = Event.current.type == EventType.MouseDown && draggingNode == null;
-         bool draggingStopped = Event.current.type == EventType.MouseUp && draggingNode != null;
-         bool draggingInProcess = Event.current.type == EventType.MouseDrag && draggingNode != null;
+         bool draggingNodeIsInProcess = Event.current.type == EventType.MouseDrag && draggingNode != null;
+         bool draggingCanvasIsInProcess = Event.current.type == EventType.MouseDrag && draggingCanvas;
+         bool draggingNodeIsStopped = Event.current.type == EventType.MouseUp && draggingNode != null;
+         bool draggingCanvasIsStopped = Event.current.type == EventType.MouseUp && draggingCanvas;
 
          if (draggingStarted)
          {
@@ -107,16 +111,32 @@ namespace RPG.Dialogue.Editor
             {
                draggingOffset = draggingNode.rect.position - Event.current.mousePosition;
             }
+            else
+            {
+               draggingCanvas = true;
+               draggingCanvasOffset = Event.current.mousePosition + scrollPosition;
+            }
          }
-         else if (draggingInProcess)
+         else if (draggingNodeIsInProcess)
          {
             Undo.RecordObject(selectedDialogue, "Update Dialogue position");
             draggingNode.rect.position = Event.current.mousePosition + draggingOffset;
+
             GUI.changed = true;
          }
-         else if (draggingStopped)
+         else if (draggingCanvasIsInProcess)
+         {
+            scrollPosition = draggingCanvasOffset - Event.current.mousePosition;
+
+            GUI.changed = true;
+         }
+         else if (draggingNodeIsStopped)
          {
             draggingNode = null;
+         }
+         else if(draggingCanvasIsStopped)
+         {
+            draggingCanvas = false;
          }
       }
 
