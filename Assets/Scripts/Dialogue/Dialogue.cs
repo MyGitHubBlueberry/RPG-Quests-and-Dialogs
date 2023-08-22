@@ -8,7 +8,7 @@ namespace RPG.Dialogue
 {
 
    [CreateAssetMenu(fileName = "New Dialogue", menuName = "Dialogue")]
-   public class Dialogue : ScriptableObject
+   public class Dialogue : ScriptableObject, ISerializationCallbackReceiver
    {
       [SerializeField] List<DialogueNode> nodes = new List<DialogueNode>();
       Dictionary<string, DialogueNode> nodeLookup = new Dictionary<string, DialogueNode>();
@@ -16,21 +16,13 @@ namespace RPG.Dialogue
 #if UNITY_EDITOR
       private void Awake()
       {
-         CreateDefaultNode();
          OnValidate();
       }
 #endif
 
-      public void CreateDefaultNode()
-      {
-         if (nodes.Count == 0)
-         {
-            CreateNode(null);
-         }
-      }
-
       private void OnValidate()
       {
+         CreateDefaultNode();
          nodeLookup.Clear();
          foreach (DialogueNode node in GetAllNodes())
          {
@@ -38,19 +30,11 @@ namespace RPG.Dialogue
          }
       }
 
-      public IEnumerable<DialogueNode> GetAllNodes()
+      public void CreateDefaultNode()
       {
-         return nodes;
-      }
-
-      public IEnumerable<DialogueNode> GetAllChildren(DialogueNode parentNode)
-      {
-         foreach (string childID in parentNode.children)
+         if (nodes.Count == 0)
          {
-            if (nodeLookup.ContainsKey(childID))
-            {
-               yield return nodeLookup[childID];
-            }
+            CreateNode(null);
          }
       }
 
@@ -69,6 +53,22 @@ namespace RPG.Dialogue
          OnValidate();
       }
 
+      public IEnumerable<DialogueNode> GetAllNodes()
+      {
+         return nodes;
+      }
+
+      public IEnumerable<DialogueNode> GetAllChildren(DialogueNode parentNode)
+      {
+         foreach (string childID in parentNode.children)
+         {
+            if (nodeLookup.ContainsKey(childID))
+            {
+               yield return nodeLookup[childID];
+            }
+         }
+      }
+
       public void DeleteNode(DialogueNode nodeToDelete)
       {
          nodes.Remove(nodeToDelete);
@@ -83,6 +83,24 @@ namespace RPG.Dialogue
          {
             node.children.Remove(nodeToDelete.name);
          }
+      }
+
+      public void OnBeforeSerialize()
+      {
+         if (AssetDatabase.GetAssetPath(this) != "")
+         {
+            foreach (DialogueNode node in GetAllNodes())
+            {
+               if (AssetDatabase.GetAssetPath(node) == "")
+               {
+                  AssetDatabase.AddObjectToAsset(node, this);
+               }
+            }
+         }
+      }
+
+      public void OnAfterDeserialize()
+      {
       }
    }
 }
