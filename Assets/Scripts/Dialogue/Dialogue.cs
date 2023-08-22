@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -11,6 +10,7 @@ namespace RPG.Dialogue
    public class Dialogue : ScriptableObject, ISerializationCallbackReceiver
    {
       [SerializeField] List<DialogueNode> nodes = new List<DialogueNode>();
+      [SerializeField] Vector2 newNodeOffset = new Vector2(250, 0);
       Dictionary<string, DialogueNode> nodeLookup = new Dictionary<string, DialogueNode>();
 
       private void OnValidate()
@@ -71,7 +71,7 @@ namespace RPG.Dialogue
          }
       }
 
-      private static DialogueNode MakeNode(DialogueNode parentNode)
+      private DialogueNode MakeNode(DialogueNode parentNode)
       {
          DialogueNode node = CreateInstance<DialogueNode>();
          node.name = Guid.NewGuid().ToString();
@@ -79,6 +79,9 @@ namespace RPG.Dialogue
          if (parentNode != null)
          {
             parentNode.AddChild(node.name);
+            node.SetPlayerSpeaking(!parentNode.IsPlayerSpeaking());
+            Vector2 parentPosition = parentNode.GetRect().position;
+            node.SetPosition(parentPosition + newNodeOffset);
          }
 
          return node;
