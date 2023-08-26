@@ -13,19 +13,10 @@ namespace RPG.Dialogue
       [SerializeField] Vector2 newNodeOffset = new Vector2(250, 0);
       Dictionary<string, DialogueNode> nodeLookup = new Dictionary<string, DialogueNode>();
 
-      private void OnValidate()
-      {
-         CreateDefaultNode();
-         nodeLookup.Clear();
-         foreach (DialogueNode node in GetAllNodes())
-         {
-            nodeLookup[node.name] = node;
-         }
-      }
 
-      public IEnumerable<DialogueNode> GetAllNodes()
+      public DialogueNode GetRootNode()
       {
-         return nodes;
+         return nodes[0];
       }
 
       public IEnumerable<DialogueNode> GetAllChildren(DialogueNode parentNode)
@@ -38,6 +29,21 @@ namespace RPG.Dialogue
             }
          }
       }
+
+      private void OnValidate()
+      {
+         nodeLookup.Clear();
+         foreach (DialogueNode node in GetAllNodes())
+         {
+            nodeLookup[node.name] = node;
+         }
+      }
+
+      public IEnumerable<DialogueNode> GetAllNodes()
+      {
+         return nodes;
+      }
+
 
       public void OnBeforeSerialize()
       {
