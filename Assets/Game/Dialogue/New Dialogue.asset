@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 3686c84d-37de-48cc-b81d-e8adbeb1488b
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
-  text: 
+  text: :)
   children: []
   rect:
     serializedVersion: 2
@@ -34,7 +34,7 @@ MonoBehaviour:
   m_Name: 8247f82e-2125-4e6a-900a-148bc86e6a25
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 1
-  text: 
+  text: ...
   children:
   - c63d0d2b-7eb4-4f7b-987c-8379239d3f05
   - 67f8d28c-9c69-46af-9d15-21f406d7e59a
@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Name: 67f8d28c-9c69-46af-9d15-21f406d7e59a
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
-  text: 
+  text: ...
   children: []
   rect:
     serializedVersion: 2
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 7c697892-c6c2-4da9-81a6-a7af997db54d
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 1
-  text: 
+  text: hi
   children:
   - 3686c84d-37de-48cc-b81d-e8adbeb1488b
   - 67f8d28c-9c69-46af-9d15-21f406d7e59a
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: c63d0d2b-7eb4-4f7b-987c-8379239d3f05
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
-  text: 
+  text: bye
   children: []
   rect:
     serializedVersion: 2
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 402e92bb-7ca2-40f0-b000-918849156177
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
-  text: 
+  text: hello
   children:
   - 7c697892-c6c2-4da9-81a6-a7af997db54d
   - 8247f82e-2125-4e6a-900a-148bc86e6a25
