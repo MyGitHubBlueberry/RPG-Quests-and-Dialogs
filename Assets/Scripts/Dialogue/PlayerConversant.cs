@@ -22,6 +22,11 @@ namespace RPG.Dialogue
          return currentNode.GetText();
       }
 
+      public IEnumerable<string> GetAnswerChoises()
+      {
+         yield return "Answer option 1";
+         yield return "Second answer option";
+      }
       public void Next()
       {
          DialogueNode[] children = currentDialogue.GetAllChildren(currentNode).ToArray();
