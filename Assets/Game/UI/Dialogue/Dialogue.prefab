@@ -1017,6 +1017,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AIText: {fileID: 1151227895282566380}
   nextButton: {fileID: 5939799198926076501}
+  AIResponce: {fileID: 2485941029388266810}
   playerAnswerOptionsRoot: {fileID: 210824513726718314}
   answerOptionButtonPrefab: {fileID: 2977735473742260274, guid: 8c9de764f8f3ed633adb32515caf55d5,
     type: 3}

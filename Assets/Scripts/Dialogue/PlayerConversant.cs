@@ -10,26 +10,38 @@ namespace RPG.Dialogue
       [SerializeField] Dialogue currentDialogue;
 
       DialogueNode currentNode;
+      bool isChoosing;
 
       private void Awake()
       {
          currentNode = currentDialogue.GetRootNode();
       }
 
+      public bool IsChoosing()
+      {
+         return isChoosing;
+      }
+
       public string GetText()
       {
-         if(currentNode == null) return "";
+         if (currentNode == null) return "";
          return currentNode.GetText();
       }
 
-      public IEnumerable<string> GetAnswerChoises()
+      public IEnumerable<DialogueNode> GetAnswerOptions()
       {
-         yield return "Answer option 1";
-         yield return "Second answer option";
+         return currentDialogue.GetPlayerChildren(currentNode);
       }
+
       public void Next()
       {
-         DialogueNode[] children = currentDialogue.GetAllChildren(currentNode).ToArray();
+         int numPlayerResponces = currentDialogue.GetPlayerChildren(currentNode).Count();
+         if(numPlayerResponces > 0)
+         {
+            isChoosing = true;
+            return;
+         }
+         DialogueNode[] children = currentDialogue.GetAIChildren(currentNode).ToArray();
          int childIndex = Random.Range(0, children.Length);
          currentNode = children[childIndex];
       }
