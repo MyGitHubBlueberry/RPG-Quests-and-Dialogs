@@ -1,5 +1,183 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8525915919127020642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0639a8acc2181fc7b84164a5747eeb6f, type: 3}
+  m_Name: 577fc493-b392-4a9a-a936-dd8d9fa881c2
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: 'We good. '
+  children:
+  - 0074038d-85a7-4b00-aa53-d8a74e413167
+  rect:
+    serializedVersion: 2
+    x: 1717
+    y: 105
+    width: 200
+    height: 100
+--- !u!114 &-8089282015410017630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0639a8acc2181fc7b84164a5747eeb6f, type: 3}
+  m_Name: a5da0f73-7744-424c-9715-4998818eb7c2
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: I didn't mean to be rude, I had a tough day. Sorry...
+  children:
+  - d25916c3-5143-4fa4-b95f-b67eecb765f8
+  rect:
+    serializedVersion: 2
+    x: 793
+    y: 127
+    width: 200
+    height: 100
+--- !u!114 &-6624244858751605596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0639a8acc2181fc7b84164a5747eeb6f, type: 3}
+  m_Name: 15e3b6d7-c6f2-44e5-9641-8efe0627c5cc
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: You shoud come with me, I affraid.
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 1953
+    y: -2
+    width: 200
+    height: 100
+--- !u!114 &-6292668187566585046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0639a8acc2181fc7b84164a5747eeb6f, type: 3}
+  m_Name: af98ce3c-0f19-4baf-9326-1a00ffbad26e
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: What is this?! **finds contraband**
+  children:
+  - 15e3b6d7-c6f2-44e5-9641-8efe0627c5cc
+  rect:
+    serializedVersion: 2
+    x: 1705
+    y: -11
+    width: 200
+    height: 100
+--- !u!114 &-4792923376424754073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0639a8acc2181fc7b84164a5747eeb6f, type: 3}
+  m_Name: da373876-1fd8-45ca-a3e7-25b35b3f893f
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Get him, boys!
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 1652
+    y: 242
+    width: 200
+    height: 100
+--- !u!114 &-3301042465418651997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0639a8acc2181fc7b84164a5747eeb6f, type: 3}
+  m_Name: db06f4f3-a14e-49e7-9757-f838d5fb5fa4
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: Fuck off.
+  children:
+  - bc230f5e-2370-48f7-9a66-cf184b5b94f9
+  - da373876-1fd8-45ca-a3e7-25b35b3f893f
+  rect:
+    serializedVersion: 2
+    x: 1327
+    y: 243
+    width: 200
+    height: 100
+--- !u!114 &-2903618232463520370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0639a8acc2181fc7b84164a5747eeb6f, type: 3}
+  m_Name: 5e78060f-953e-4e1e-979e-3f0305746581
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Stay calm, show me your pockets.
+  children:
+  - d54ab1c6-a81c-4f23-8348-12206d63f129
+  - a5da0f73-7744-424c-9715-4998818eb7c2
+  - db06f4f3-a14e-49e7-9757-f838d5fb5fa4
+  rect:
+    serializedVersion: 2
+    x: 543
+    y: 127
+    width: 200
+    height: 100
+--- !u!114 &-223784701013095912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0639a8acc2181fc7b84164a5747eeb6f, type: 3}
+  m_Name: b5a4ab8a-f840-43a3-bfe4-d21a677a4b9d
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: What ever
+  children:
+  - 5e78060f-953e-4e1e-979e-3f0305746581
+  - bc230f5e-2370-48f7-9a66-cf184b5b94f9
+  rect:
+    serializedVersion: 2
+    x: 293
+    y: 127
+    width: 200
+    height: 100
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14,6 +192,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodes:
   - {fileID: 781233674036970534}
+  - {fileID: 1823353613718727582}
+  - {fileID: -223784701013095912}
+  - {fileID: 7466796472659169683}
+  - {fileID: -2903618232463520370}
+  - {fileID: 8604138764067135499}
+  - {fileID: 990560512067456484}
+  - {fileID: -8089282015410017630}
+  - {fileID: -3301042465418651997}
+  - {fileID: -6292668187566585046}
+  - {fileID: -6624244858751605596}
+  - {fileID: -8525915919127020642}
+  - {fileID: 6580332511407942909}
+  - {fileID: 5372565897742622798}
+  - {fileID: -4792923376424754073}
   newNodeOffset: {x: 250, y: 0}
 --- !u!114 &781233674036970534
 MonoBehaviour:
@@ -28,11 +220,144 @@ MonoBehaviour:
   m_Name: cc66be0a-3cd6-4c03-878d-0ec5d94b44b1
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
-  text: 
+  text: Hello there
+  children:
+  - 8245fc94-5e30-4e8b-83bf-3f4927315e64
+  - b5a4ab8a-f840-43a3-bfe4-d21a677a4b9d
+  rect:
+    serializedVersion: 2
+    x: 48
+    y: 27
+    width: 200
+    height: 100
+--- !u!114 &990560512067456484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0639a8acc2181fc7b84164a5747eeb6f, type: 3}
+  m_Name: d54ab1c6-a81c-4f23-8348-12206d63f129
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: All right
+  children:
+  - af98ce3c-0f19-4baf-9326-1a00ffbad26e
+  - 577fc493-b392-4a9a-a936-dd8d9fa881c2
+  rect:
+    serializedVersion: 2
+    x: 1314
+    y: 21
+    width: 200
+    height: 100
+--- !u!114 &1823353613718727582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0639a8acc2181fc7b84164a5747eeb6f, type: 3}
+  m_Name: 8245fc94-5e30-4e8b-83bf-3f4927315e64
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  text: Hi
+  children:
+  - 39b3f491-37c2-4d17-b1c1-e00b1d8a23f9
+  rect:
+    serializedVersion: 2
+    x: 298
+    y: 27
+    width: 200
+    height: 100
+--- !u!114 &5372565897742622798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0639a8acc2181fc7b84164a5747eeb6f, type: 3}
+  m_Name: d25916c3-5143-4fa4-b95f-b67eecb765f8
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Okey, but I steel need to check your pockets.
+  children:
+  - db06f4f3-a14e-49e7-9757-f838d5fb5fa4
+  - d54ab1c6-a81c-4f23-8348-12206d63f129
+  rect:
+    serializedVersion: 2
+    x: 1071
+    y: 122
+    width: 200
+    height: 100
+--- !u!114 &6580332511407942909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0639a8acc2181fc7b84164a5747eeb6f, type: 3}
+  m_Name: 0074038d-85a7-4b00-aa53-d8a74e413167
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Come through. Dont be shit with villagers at least.
   children: []
   rect:
     serializedVersion: 2
-    x: 45
+    x: 1978
+    y: 105
+    width: 200
+    height: 100
+--- !u!114 &7466796472659169683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0639a8acc2181fc7b84164a5747eeb6f, type: 3}
+  m_Name: 39b3f491-37c2-4d17-b1c1-e00b1d8a23f9
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Nice to meet you. Wellcome to the town.
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 549
     y: 27
+    width: 200
+    height: 100
+--- !u!114 &8604138764067135499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0639a8acc2181fc7b84164a5747eeb6f, type: 3}
+  m_Name: bc230f5e-2370-48f7-9a66-cf184b5b94f9
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  text: Turn around and go away, we dont like rude dushes.
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 1605
+    y: 437
     width: 200
     height: 100
