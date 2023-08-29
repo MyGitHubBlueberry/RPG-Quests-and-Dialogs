@@ -33,6 +33,13 @@ namespace RPG.Dialogue
          return currentDialogue.GetPlayerChildren(currentNode);
       }
 
+      public void SelectAnswer(DialogueNode chosenNode)
+      {
+         currentNode = chosenNode;
+         isChoosing = false;
+         Next();
+      }
+
       public void Next()
       {
          int numPlayerResponces = currentDialogue.GetPlayerChildren(currentNode).Count();
