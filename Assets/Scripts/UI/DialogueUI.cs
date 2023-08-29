@@ -12,6 +12,7 @@ namespace RPG.UI
    {
       [SerializeField] TextMeshProUGUI AIText;
       [SerializeField] Button nextButton;
+      [SerializeField] Button quitButton;
       [SerializeField] GameObject AIResponce;
       [SerializeField] Transform playerAnswerOptionsRoot;
       [SerializeField] GameObject answerOptionButtonPrefab;
@@ -22,18 +23,16 @@ namespace RPG.UI
       {
          playerConversant = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerConversant>();
          playerConversant.OnConversationUpdated += UpdateUI;
-         nextButton.onClick.AddListener(Next);
+         nextButton.onClick.AddListener(playerConversant.Next);
+         quitButton.onClick.AddListener(playerConversant.Quit);
 
          UpdateUI();
       }
 
-      private void Next()
-      {
-         playerConversant.Next();
-      }
-
       private void UpdateUI()
       {
+         gameObject.SetActive(playerConversant.IsActive());
+
          if(!playerConversant.IsActive()) return;
 
          AIResponce.SetActive(!playerConversant.IsChoosing());

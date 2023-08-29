@@ -8,23 +8,24 @@ namespace RPG.Dialogue
 {
    public class PlayerConversant : MonoBehaviour
    {
-      [SerializeField] Dialogue testDialogue;
       Dialogue currentDialogue;
       DialogueNode currentNode;
       bool isChoosing;
 
       public event Action OnConversationUpdated;
 
-      IEnumerator Start()
-      {
-         yield return new WaitForSeconds(2);
-         StartDialogue(testDialogue);
-      }
-
       public void StartDialogue(Dialogue newDialogue)
       {
          currentDialogue = newDialogue;
          currentNode = currentDialogue.GetRootNode();
+         OnConversationUpdated?.Invoke();
+      }
+
+      public void Quit()
+      {
+         currentDialogue = null;
+         currentNode = null;
+         isChoosing = false;
          OnConversationUpdated?.Invoke();
       }
 
