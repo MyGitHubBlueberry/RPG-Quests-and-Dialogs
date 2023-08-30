@@ -8,6 +8,7 @@ namespace RPG.Dialogue
 {
    public class PlayerConversant : MonoBehaviour
    {
+      [SerializeField] string playerName;
       Dialogue currentDialogue;
       DialogueNode currentNode;
       AIConversant currentConversant;
@@ -15,7 +16,7 @@ namespace RPG.Dialogue
 
       public event Action OnConversationUpdated;
 
-      public void StartDialogue(AIConversant newConversant,Dialogue newDialogue)
+      public void StartDialogue(AIConversant newConversant, Dialogue newDialogue)
       {
          currentConversant = newConversant;
          currentDialogue = newDialogue;
@@ -47,6 +48,11 @@ namespace RPG.Dialogue
       {
          if (currentNode == null) return "";
          return currentNode.GetText();
+      }
+
+      public string GetCurrentConversantName()
+      {
+         return IsChoosing() ? playerName : currentConversant.GetName();
       }
 
       public IEnumerable<DialogueNode> GetAnswerOptions()
@@ -104,7 +110,7 @@ namespace RPG.Dialogue
 
       private void TriggerAction(string action)
       {
-         if(String.IsNullOrEmpty(action)) return;
+         if (String.IsNullOrEmpty(action)) return;
 
          foreach (DialogueTrigger trigger in currentConversant.GetComponents<DialogueTrigger>())
          {

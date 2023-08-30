@@ -387,6 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 739764cb1eeaa06a1b543de1da3679e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  conversantName: Suspicious Guard
   dialogue: {fileID: 11400000, guid: 6927c1be9370d6cbda32846a45cbc21d, type: 2}
 --- !u!114 &425008554 stripped
 MonoBehaviour:
@@ -470,6 +471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 739764cb1eeaa06a1b543de1da3679e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  conversantName: 
   dialogue: {fileID: 11400000, guid: d02b9d92c79c9b8e297f3444db6bbda9, type: 2}
 --- !u!1001 &442466014
 PrefabInstance:
@@ -1524,7 +1526,7 @@ PrefabInstance:
     - target: {fileID: 5263524460118599961, guid: 9065ec7e81ca8034a865d6fdd7906af9,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -570.74927
+      value: -570.74976
       objectReference: {fileID: 0}
     - target: {fileID: 5581100297310035519, guid: 9065ec7e81ca8034a865d6fdd7906af9,
         type: 3}
