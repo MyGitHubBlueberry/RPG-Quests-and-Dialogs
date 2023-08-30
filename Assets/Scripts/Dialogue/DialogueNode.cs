@@ -13,8 +13,8 @@ namespace RPG.Dialogue
       [SerializeField] string text;
       [SerializeField] List<string> children = new List<string>();
       [SerializeField] Rect rect = new Rect(0, 0, 200, 100);
-      [SerializeField] string onExitAction;
       [SerializeField] string onEnterAction;
+      [SerializeField] string onExitAction;
 
 
       public Rect GetRect()
