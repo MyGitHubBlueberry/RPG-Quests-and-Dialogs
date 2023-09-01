@@ -20,5 +20,10 @@ namespace RPG.Quests
       {
          return objectives.Length;
       }
+
+      public IEnumerable<string> GetObjectives()
+      {
+         return objectives;
+      }
    }
 }
