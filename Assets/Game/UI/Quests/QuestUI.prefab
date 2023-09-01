@@ -398,6 +398,7 @@ GameObject:
   - component: {fileID: 7249994816382590385}
   - component: {fileID: 1111620612635551185}
   - component: {fileID: 7173964036700531806}
+  - component: {fileID: 9033656510768597037}
   m_Layer: 0
   m_Name: QuestsContent
   m_TagString: Untagged
@@ -465,6 +466,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!114 &9033656510768597037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2602269745607987050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23aa8d962c7e7eb478f87313f0b1a41a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tempQuests:
+  - {fileID: 11400000, guid: 686800b1fcb39634d96c944f5413e177, type: 2}
+  - {fileID: 11400000, guid: c6033d95dc0b53348b09925bb1ca7685, type: 2}
+  questPrefab: {fileID: 814840594063808175, guid: 98ad2b56c934048459d70cddd9f7148f,
+    type: 3}
 --- !u!1 &4748210025902887940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1155,7 +1173,7 @@ PrefabInstance:
     - target: {fileID: 7464506653322319070, guid: 98ad2b56c934048459d70cddd9f7148f,
         type: 3}
       propertyPath: m_Name
-      value: Quest Template
+      value: Quest
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

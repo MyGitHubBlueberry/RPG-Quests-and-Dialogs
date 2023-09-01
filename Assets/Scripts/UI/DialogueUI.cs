@@ -5,6 +5,7 @@ using RPG.Dialogue;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using Extentions;
 
 namespace RPG.UI
 {
@@ -42,21 +43,13 @@ namespace RPG.UI
 
          if (playerConversant.IsChoosing())
          {
-            DestroyOldChildren();
+            playerAnswerOptionsRoot.DestroyChildren();
             SetUpNewChildren();
          }
          else
          {
             AIText.text = playerConversant.GetText();
             nextButton.gameObject.SetActive(playerConversant.HasNext());
-         }
-      }
-
-      private void DestroyOldChildren()
-      {
-         foreach (Transform child in playerAnswerOptionsRoot)
-         {
-            Destroy(child.gameObject);
          }
       }
 

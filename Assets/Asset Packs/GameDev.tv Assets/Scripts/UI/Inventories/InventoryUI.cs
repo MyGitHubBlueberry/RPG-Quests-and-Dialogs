@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GameDevTV.Inventories;
+using Extentions;
 
 namespace GameDevTV.UI.Inventories
 {
@@ -34,10 +35,7 @@ namespace GameDevTV.UI.Inventories
 
         private void Redraw()
         {
-            foreach (Transform child in transform)
-            {
-                Destroy(child.gameObject);
-            }
+            transform.DestroyChildren();
 
             for (int i = 0; i < playerInventory.GetSize(); i++)
             {
