@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Mother hybbards bunions
   m_EditorClassIdentifier: 
   objectives:
-  - o
+  - 1
+  - 2
+  - 3

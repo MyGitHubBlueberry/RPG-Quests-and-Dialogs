@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Find the missing sock
   m_EditorClassIdentifier: 
   objectives:
-  - 'Go '
+  - Go
   - Find

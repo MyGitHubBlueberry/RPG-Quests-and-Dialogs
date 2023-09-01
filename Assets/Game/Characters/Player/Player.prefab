@@ -221,6 +221,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4036867464251755987}
+    - targetCorrespondingSourceObject: {fileID: 5401972681186859721, guid: 750e3c6876a501e42b5827ec7a3d24d1,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 378351675388430698}
   m_SourcePrefab: {fileID: 100100000, guid: 750e3c6876a501e42b5827ec7a3d24d1, type: 3}
 --- !u!82 &1305870661446727405 stripped
 AudioSource:
@@ -385,6 +389,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerName: Herbert Socksworthy
+--- !u!114 &378351675388430698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4902660786131331472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 504184256e3202645b2fa3692a2a9049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questStatuses:
+  - quest: {fileID: 11400000, guid: 686800b1fcb39634d96c944f5413e177, type: 2}
+    completedObjectives:
+    - Go
+  - quest: {fileID: 11400000, guid: c6033d95dc0b53348b09925bb1ca7685, type: 2}
+    completedObjectives:
+    - 1
+    - 2
 --- !u!4 &9169026001514661365 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8196697675836667564, guid: 750e3c6876a501e42b5827ec7a3d24d1,

@@ -742,6 +742,8 @@ MonoBehaviour:
   objectives: {fileID: 911050872469278557}
   objectivePrefab: {fileID: 7229701126270805274, guid: 212ce6e11a3bf3846aecd7a245f59e73,
     type: 3}
+  incompletedObjectivePrefab: {fileID: 2460317144590907448, guid: 9c959149cf4013d43b53265b27c64890,
+    type: 3}
 --- !u!1001 &210291357899771715
 PrefabInstance:
   m_ObjectHideFlags: 0
