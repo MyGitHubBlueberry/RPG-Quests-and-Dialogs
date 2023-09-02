@@ -65,8 +65,8 @@ MonoBehaviour:
   children: []
   rect:
     serializedVersion: 2
-    x: 1953
-    y: -2
+    x: 1960
+    y: -11
     width: 200
     height: 100
   onEnterAction: 
@@ -112,12 +112,12 @@ MonoBehaviour:
   children: []
   rect:
     serializedVersion: 2
-    x: 1652
-    y: 242
+    x: 1608
+    y: 245
     width: 200
     height: 100
   onEnterAction: 
-  onExitAction: 
+  onExitAction: Attack
 --- !u!114 &-3301042465418651997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,12 +362,12 @@ MonoBehaviour:
   children: []
   rect:
     serializedVersion: 2
-    x: 549
-    y: 27
+    x: 548
+    y: 28
     width: 200
     height: 100
   onEnterAction: 
-  onExitAction: Attack
+  onExitAction: TestObjective
 --- !u!114 &8604138764067135499
 MonoBehaviour:
   m_ObjectHideFlags: 0
