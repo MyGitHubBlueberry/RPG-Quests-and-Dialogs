@@ -24,9 +24,10 @@ namespace RPG.UI.Quests
             GameObject prefabToInstantiate = status.IsObjectiveCompleted(objective) 
             ? objectivePrefab
             : incompletedObjectivePrefab;
-            
+
             GameObject objectiveInstance = Instantiate(prefabToInstantiate, objectives);
-            TextMeshProUGUI objectiveText = objectiveInstance.GetComponentInChildren<TextMeshProUGUI>();
+            TextMeshProUGUI objectiveText = objectiveInstance
+               .GetComponentInChildren<TextMeshProUGUI>();
             objectiveText.text = objective;
          }
       }

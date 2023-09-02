@@ -7,11 +7,26 @@ namespace RPG.Quests
 {
    public class QuestList : MonoBehaviour
    {
-      [SerializeField] QuestStatus[] questStatuses;
+      List<QuestStatus> questStatuses = new List<QuestStatus>();
 
-      public IEnumerable<QuestStatus> GetStatuses()
+      public event Action OnQuestListUpdated;
+
+      public IEnumerable<QuestStatus> GetStatuses() => questStatuses;
+      public void AddQuest(Quest quest)
       {
-         return questStatuses;
+         if (HasQuest(quest)) return;
+         QuestStatus newStatus = new QuestStatus(quest);
+         questStatuses.Add(newStatus);
+         OnQuestListUpdated?.Invoke();
+      }
+
+      private bool HasQuest(Quest quest)
+      {
+         foreach (QuestStatus status in questStatuses)
+         {
+            if(status.GetQuest() == quest) return true;
+         }
+         return false;
       }
    }
 }
