@@ -20,13 +20,25 @@ namespace RPG.Quests
          OnQuestListUpdated?.Invoke();
       }
 
-      private bool HasQuest(Quest quest)
+      public bool HasQuest(Quest quest)
+      {
+         return GetQuestStatus(quest) != null;
+      }
+
+      public void CompleteObjective(Quest quest, string objective)
+      {
+         QuestStatus status = GetQuestStatus(quest);
+         status.CompleteObjective(objective);
+         OnQuestListUpdated?.Invoke();
+      }
+      
+      private QuestStatus GetQuestStatus(Quest quest)
       {
          foreach (QuestStatus status in questStatuses)
          {
-            if(status.GetQuest() == quest) return true;
+            if (status.GetQuest() == quest) return status;
          }
-         return false;
+         return null;
       }
    }
 }
