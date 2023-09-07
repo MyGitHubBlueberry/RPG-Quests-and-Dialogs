@@ -4,24 +4,44 @@ using UnityEngine;
 
 namespace RPG.Quests
 {
-    using System.Linq;
-    using System.Runtime.CompilerServices;
+   using System;
+   using System.Linq;
+   using System.Runtime.CompilerServices;
+   using GameDevTV.Inventories;
+    using UnityEditor;
     using UnityEngine;
-   
+
    [CreateAssetMenu(menuName = "RPG Quests and Dialogs/Quest")]
    public class Quest : ScriptableObject
    {
-      [SerializeField] string[] objectives;
+      [SerializeField] Objective[] objectives;
+      [SerializeField] List<Reward> rewards = new List<Reward>();
       
+
+      [Serializable]
+      class Reward
+      {
+         public int number;
+         public InventoryItem item;
+      }
+
+      [Serializable]
+      public class Objective
+      {
+         public string reference;
+         public string description;
+      }
+
       public string GetTitle() => name;
       public int GetObjectivesLength() => objectives.Length;
-      public IEnumerable<string> GetObjectives() => objectives;
-      public bool HasObjective(string objective) => objectives.Contains(objective);
+      public IEnumerable<Objective> GetObjectives() => objectives;
+      public bool HasObjective(string reference) => objectives
+         .Any(objective => objective.reference == reference);
       public static Quest GetByName(string questName)
       {
-         foreach(Quest quest in Resources.LoadAll<Quest>(""))
+         foreach (Quest quest in Resources.LoadAll<Quest>(""))
          {
-            if(quest.name == questName) return quest;
+            if (quest.name == questName) return quest;
          }
          return null;
       }
