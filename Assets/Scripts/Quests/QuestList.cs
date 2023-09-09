@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using GameDevTV.Inventories;
 using GameDevTV.Saving;
 using RPG.Core;
+using TMPro;
 using UnityEngine;
 
 namespace RPG.Quests
@@ -34,6 +35,11 @@ namespace RPG.Quests
          status.CompleteObjective(objective);
          if (status.IsCompleted()) GiveReward(quest);
          OnQuestListUpdated?.Invoke();
+      }
+
+      public bool CompleteQuest(QuestStatus questStatus)
+      {
+         return questStatuses.Contains(questStatus) && questStatus.IsCompleted();
       }
 
       private QuestStatus GetQuestStatus(Quest quest)
@@ -79,11 +85,11 @@ namespace RPG.Quests
          }
       }
 
-      public bool? Evaluate(string predicate, string[] parameters)
+      public bool? Evaluate(string predicate, string[] parameters) => predicate switch
       {
-         if(predicate != nameof(HasQuest)) return null;
-
-         return HasQuest(Quest.GetByName(parameters[0]));
-      }
+         nameof(HasQuest) => HasQuest(Quest.GetByName(parameters[0])),
+         "CompletedQuest" => GetQuestStatus(Quest.GetByName(parameters[0])).IsCompleted(),
+         _ => null
+      };
    }
 }
