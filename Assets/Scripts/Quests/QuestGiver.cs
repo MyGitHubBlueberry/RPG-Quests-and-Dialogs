@@ -10,7 +10,8 @@ namespace RPG.Quests
 
       public void GiveQuest()
       {
-         QuestList questList = GameObject.FindGameObjectWithTag("Player").GetComponent<QuestList>();
+         QuestList questList = GameObject.FindGameObjectWithTag("Player")
+            .GetComponent<QuestList>();
          questList.AddQuest(quest);
       }
    }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 namespace RPG.Quests
@@ -44,6 +45,15 @@ namespace RPG.Quests
         public object CaptureState()
         {
             return new QuestStatusRecord(quest, completedObjectives);
+        }
+
+        public bool IsCompleted()
+        {
+            foreach(var objective in quest.GetObjectives())
+                if(!completedObjectives.Contains(objective.reference)) 
+                    return false; 
+
+            return true;
         }
     }
 }

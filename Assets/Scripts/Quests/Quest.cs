@@ -15,12 +15,13 @@ namespace RPG.Quests
    public class Quest : ScriptableObject
    {
       [SerializeField] Objective[] objectives;
-      [SerializeField] List<Reward> rewards = new List<Reward>();
+      [SerializeField] Reward[] rewards;
       
 
       [Serializable]
-      class Reward
+      public class Reward
       {
+         [Min(1)]
          public int number;
          public InventoryItem item;
       }
@@ -35,8 +36,10 @@ namespace RPG.Quests
       public string GetTitle() => name;
       public int GetObjectivesLength() => objectives.Length;
       public IEnumerable<Objective> GetObjectives() => objectives;
+      public IEnumerable<Reward> GetRewards() => rewards;
       public bool HasObjective(string reference) => objectives
          .Any(objective => objective.reference == reference);
+
       public static Quest GetByName(string questName)
       {
          foreach (Quest quest in Resources.LoadAll<Quest>(""))

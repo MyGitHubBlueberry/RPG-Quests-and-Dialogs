@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using GameDevTV.Inventories;
 using GameDevTV.Saving;
 using UnityEngine;
 
@@ -30,6 +31,7 @@ namespace RPG.Quests
       {
          QuestStatus status = GetQuestStatus(quest);
          status.CompleteObjective(objective);
+         if (status.IsCompleted()) GiveReward(quest);
          OnQuestListUpdated?.Invoke();
       }
 
@@ -40,6 +42,18 @@ namespace RPG.Quests
             if (status.GetQuest() == quest) return status;
          }
          return null;
+      }
+      
+      private void GiveReward(Quest quest)
+      {
+         foreach(var reward in quest.GetRewards())
+         {
+            bool isRewardAdded = GetComponent<Inventory>().AddToFirstEmptySlot(reward.item, reward.number);
+            if(!isRewardAdded)
+            {
+               GetComponent<ItemDropper>().DropItem(reward.item, reward.number);
+            }
+         }
       }
 
       public object CaptureState()
@@ -55,7 +69,7 @@ namespace RPG.Quests
       public void RestoreState(object state)
       {
          List<object> stateList = state as List<object>;
-         if(stateList == null) return;
+         if (stateList == null) return;
 
          questStatuses.Clear();
          foreach (object objectState in stateList)
