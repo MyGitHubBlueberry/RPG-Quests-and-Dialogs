@@ -55,7 +55,8 @@ namespace RPG.Quests
       {
          foreach (var reward in quest.GetRewards())
          {
-            bool isRewardAdded = GetComponent<Inventory>().AddToFirstEmptySlot(reward.item, reward.number);
+            bool isRewardAdded = GetComponent<Inventory>()
+               .AddToFirstEmptySlot(reward.item, reward.number);
             if (!isRewardAdded)
             {
                GetComponent<ItemDropper>().DropItem(reward.item, reward.number);
@@ -89,7 +90,7 @@ namespace RPG.Quests
       {
          nameof(HasQuest) => HasQuest(Quest.GetByName(parameters[0])),
          "CompletedQuest" => GetQuestStatus(Quest.GetByName(parameters[0])).IsCompleted(),
-         _ => null
+         _ => null,
       };
    }
 }

@@ -8,18 +8,47 @@ namespace RPG.Core
    [Serializable]
    public class Condition
    {
-      [SerializeField] string predicate;
-      [SerializeField] string[] parameters;
+      [SerializeField] Disjunction[] and;
 
       public bool Check(IEnumerable<IPredicateEvaluator> evaluators)
       {
-         foreach (var evaluator in evaluators)
-         {
-            bool? result = evaluator.Evaluate(predicate, parameters);
-            if (result == null) continue;
-            if (result == false) return false;
-         }
+         foreach (var disjunction in and)
+            if (!disjunction.Check(evaluators)) return false;
+
          return true;
+      }
+
+      [Serializable]
+      class Disjunction
+      {
+         [SerializeField] Predicate[] or;
+
+         public bool Check(IEnumerable<IPredicateEvaluator> evaluators)
+         {
+            foreach (var predicate in or)
+               if (predicate.Check(evaluators)) return true;
+
+            return false;
+         }
+      }
+
+      [Serializable]
+      class Predicate
+      {
+         [SerializeField] string predicate;
+         [SerializeField] bool isNegated;
+         [SerializeField] string[] parameters;
+
+         public bool Check(IEnumerable<IPredicateEvaluator> evaluators)
+         {
+            foreach (var evaluator in evaluators)
+            {
+               bool? result = evaluator.Evaluate(predicate, parameters);
+               if (result == null) continue;
+               if (result == isNegated) return false;
+            }
+            return true;
+         }
       }
    }
 }
