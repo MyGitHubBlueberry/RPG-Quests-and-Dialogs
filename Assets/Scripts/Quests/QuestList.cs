@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using GameDevTV.Inventories;
 using GameDevTV.Saving;
+using RPG.Core;
 using UnityEngine;
 
 namespace RPG.Quests
 {
-   public class QuestList : MonoBehaviour, ISaveable
+   public class QuestList : MonoBehaviour, ISaveable, IPredicateEvaluator
    {
       List<QuestStatus> questStatuses = new List<QuestStatus>();
 
@@ -43,13 +44,13 @@ namespace RPG.Quests
          }
          return null;
       }
-      
+
       private void GiveReward(Quest quest)
       {
-         foreach(var reward in quest.GetRewards())
+         foreach (var reward in quest.GetRewards())
          {
             bool isRewardAdded = GetComponent<Inventory>().AddToFirstEmptySlot(reward.item, reward.number);
-            if(!isRewardAdded)
+            if (!isRewardAdded)
             {
                GetComponent<ItemDropper>().DropItem(reward.item, reward.number);
             }
@@ -76,6 +77,13 @@ namespace RPG.Quests
          {
             questStatuses.Add(new QuestStatus(objectState));
          }
+      }
+
+      public bool? Evaluate(string predicate, string[] parameters)
+      {
+         if(predicate != nameof(HasQuest)) return null;
+
+         return HasQuest(Quest.GetByName(parameters[0]));
       }
    }
 }

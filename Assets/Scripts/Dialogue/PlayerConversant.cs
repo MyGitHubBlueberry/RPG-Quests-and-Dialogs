@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using RPG.Core;
 using UnityEngine;
 
 namespace RPG.Dialogue
@@ -57,7 +58,7 @@ namespace RPG.Dialogue
 
       public IEnumerable<DialogueNode> GetAnswerOptions()
       {
-         return currentDialogue.GetPlayerChildren(currentNode);
+         return FilterOnCondition(currentDialogue.GetPlayerChildren(currentNode));
       }
 
       public void SelectAnswer(DialogueNode chosenNode)
@@ -70,7 +71,7 @@ namespace RPG.Dialogue
 
       public void Next()
       {
-         int numPlayerResponces = currentDialogue.GetPlayerChildren(currentNode).Count();
+         int numPlayerResponces = FilterOnCondition(currentDialogue.GetPlayerChildren(currentNode)).Count();
          if (numPlayerResponces > 0)
          {
             isChoosing = true;
@@ -78,7 +79,7 @@ namespace RPG.Dialogue
             OnConversationUpdated?.Invoke();
             return;
          }
-         DialogueNode[] children = currentDialogue.GetAIChildren(currentNode).ToArray();
+         DialogueNode[] children = FilterOnCondition(currentDialogue.GetAIChildren(currentNode)).ToArray();
          int childIndex = UnityEngine.Random.Range(0, children.Length);
          TriggerExitAction();
          currentNode = children[childIndex];
@@ -89,7 +90,23 @@ namespace RPG.Dialogue
 
       public bool HasNext()
       {
-         return currentDialogue.GetAllChildren(currentNode).Count() > 0;
+         return FilterOnCondition(currentDialogue.GetAllChildren(currentNode)).Count() > 0;
+      }
+
+      private IEnumerable<DialogueNode> FilterOnCondition(IEnumerable<DialogueNode> inputNode)
+      {
+         foreach (var node in inputNode)
+         {
+            if(node.CheckCondition(GetEvaluators()))
+            {
+               yield return node;
+            }
+         }
+      }
+
+      private IEnumerable<IPredicateEvaluator> GetEvaluators()
+      {
+         return GetComponents<IPredicateEvaluator>();
       }
 
       private void TriggerEnterAction()
